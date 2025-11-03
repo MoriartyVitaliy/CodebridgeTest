@@ -7,19 +7,12 @@ namespace CodebridgeTest.Controllers
     [ApiController]
     public class PingController : ControllerBase
     {
-        private readonly ILogger<PingController> _logger;
-
-        public PingController(ILogger<PingController> logger)
-        {
-            _logger = logger;
-        }
+        public PingController()
+        {   }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Get()
         {
-            _logger.LogInformation("Ping endpoint called at {Time}", DateTime.UtcNow);
-
             return Ok(ApiInfo.FullVersion);
         }
     }
