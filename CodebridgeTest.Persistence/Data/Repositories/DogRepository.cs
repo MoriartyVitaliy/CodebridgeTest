@@ -5,9 +5,16 @@ namespace CodebridgeTest.Persistence.Data.Repositories
 {
     public class DogRepository : IDogRepository
     {
-        public IQueryable<Dog> GetAll()
+        private readonly AppDbContext _context;
+
+        public DogRepository(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public IQueryable<Dog> GetDogsQueryable()
+        {
+            return _context.Dogs.AsQueryable();
         }
     }
 }
