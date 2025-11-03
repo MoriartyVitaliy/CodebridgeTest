@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36401.2 d17.14
+VisualStudioVersion = 17.14.36401.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodebridgeTest", "CodebridgeTest\CodebridgeTest.csproj", "{383B26C0-5C1F-4D9B-9857-1BB128ECFA55}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodebridgeTest.Persistence", "CodebridgeTest.Persistence\CodebridgeTest.Persistence.csproj", "{FDC72682-B007-4D78-A489-6CAB9CB2CEF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodebridgeTest.Application", "CodebridgeTest.Application\CodebridgeTest.Application.csproj", "{9A8D88BD-816E-4143-988B-9415C91BBDD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodebridgeTest.Tests", "CodebridgeTest.Tests\CodebridgeTest.Tests.csproj", "{D303E068-15DA-4EEE-AB81-AFB472A6C4F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9A8D88BD-816E-4143-988B-9415C91BBDD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A8D88BD-816E-4143-988B-9415C91BBDD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A8D88BD-816E-4143-988B-9415C91BBDD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D303E068-15DA-4EEE-AB81-AFB472A6C4F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D303E068-15DA-4EEE-AB81-AFB472A6C4F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D303E068-15DA-4EEE-AB81-AFB472A6C4F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D303E068-15DA-4EEE-AB81-AFB472A6C4F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
