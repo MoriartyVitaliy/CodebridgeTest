@@ -1,5 +1,5 @@
-using CodebridgeTest.Core.Common.Info;
 using CodebridgeTest.Persistence;
+using CodebridgeTest.Application;
 
 namespace CodebridgeTest
 {
@@ -8,6 +8,8 @@ namespace CodebridgeTest
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddApplication();
             builder.Services.AddPersistence(builder.Configuration);
 
             builder.Services.AddControllers();

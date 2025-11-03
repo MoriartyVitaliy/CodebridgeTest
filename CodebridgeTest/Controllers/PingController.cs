@@ -1,5 +1,4 @@
 ﻿using CodebridgeTest.Core.Common.Info;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodebridgeTest.Controllers
