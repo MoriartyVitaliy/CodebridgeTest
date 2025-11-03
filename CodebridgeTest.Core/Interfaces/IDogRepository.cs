@@ -4,6 +4,6 @@ namespace CodebridgeTest.Core.Interfaces
 {
     public interface IDogRepository
     {
-        IQueryable<Dog> GetAll();
+        IQueryable<Dog> GetDogsQueryable();
     }
 }

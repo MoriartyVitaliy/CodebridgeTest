@@ -5,6 +5,6 @@
         public const string ServiceName = "Dogshouseservice";
         public const string Version = "1.0.1";
 
-        public static string FullVersion => $"{ServiceName}.Version{Version}";
+        public static string FullVersion => $"{ServiceName}.Version {Version}";
     }
 }
