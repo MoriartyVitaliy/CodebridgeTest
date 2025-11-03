@@ -1,5 +1,6 @@
-using CodebridgeTest.Persistence;
 using CodebridgeTest.Application;
+using CodebridgeTest.Middleware;
+using CodebridgeTest.Persistence;
 
 namespace CodebridgeTest
 {
@@ -11,6 +12,8 @@ namespace CodebridgeTest
 
             builder.Services.AddApplication();
             builder.Services.AddPersistence(builder.Configuration);
+
+            builder.Services.AddRedisRateLimiter(builder.Configuration);
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -24,13 +27,15 @@ namespace CodebridgeTest
                 app.UseSwaggerUI();
             }
 
+            app.UseRequestLogging();
+            app.UseRedisRateLimiter();
+
             app.UseRouting();
 
             app.UseHttpsRedirection();
             app.UseAuthorization();
 
             app.MapControllers();
-
 
             app.Run();
         }
