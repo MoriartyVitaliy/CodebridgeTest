@@ -1,16 +1,23 @@
 ﻿using CodebridgeTest.Core.Interfaces;
+using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 
 namespace CodebridgeTest.Application.Services
 {
     public class DogSortService : ISortService<Core.Models.Dog>
     {
-        public IQueryable<Core.Models.Dog> ApplySorting(IQueryable<Core.Models.Dog> query, string? attribute, string? order, string[] allowedAttributes)
+        public IQueryable<Core.Models.Dog> ApplySorting(
+            IQueryable<Core.Models.Dog> query,
+            string? attribute,
+            string? order,
+            string[] allowedAttributes)
         {
-            var attr = allowedAttributes.Contains(attribute?.ToLower())
-                ? attribute.ToLower()
-                : "name";
+            if (!string.IsNullOrEmpty(attribute) && !allowedAttributes.Contains(attribute.ToLower()))
+            {
+                throw new ValidationException($"Sorting by '{attribute}' is not supported. Allowed fields: {string.Join(", ", allowedAttributes)}");
+            }
 
+            var attr = string.IsNullOrEmpty(attribute) ? "name" : attribute.ToLower();
             var sortExpression = GetSortExpression(attr);
 
             return order?.ToLower() == "desc"
@@ -20,13 +27,13 @@ namespace CodebridgeTest.Application.Services
 
         public Expression<Func<Core.Models.Dog, object>> GetSortExpression(string property)
         {
-            return property.ToLower() switch
+            return property switch
             {
                 "name" => dog => dog.Name,
                 "color" => dog => dog.Color,
                 "tail_length" => dog => dog.TailLength,
                 "weight" => dog => dog.Weight,
-                _ => dog => dog.Name
+                _ => throw new ValidationException($"Sort attribute '{property}' is invalid.")
             };
         }
     }
