@@ -35,6 +35,8 @@ namespace CodebridgeTest
             app.UseHttpsRedirection();
             app.UseAuthorization();
 
+            app.UseGlobalExceptionHandler();
+
             app.MapControllers();
 
             app.Run();
