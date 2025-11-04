@@ -1,4 +1,5 @@
-﻿using CodebridgeTest.Application.Dog.Queries;
+﻿using CodebridgeTest.Application.Dog.Commands;
+using CodebridgeTest.Application.Dog.Queries;
 using CodebridgeTest.Core.Common.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,10 +21,25 @@ namespace CodebridgeTest.Controllers
             var result = await _mediator.Send(new GetAllDogsQuery(pagination));
             return Ok(result);
         }
+
         [HttpPost("dog")]
-        public IActionResult AddDog()
+        public async Task<IActionResult> AddDog([FromBody] CreateDogCommand command)
         {
-            return Ok("Not implemented yet");
+            await _mediator.Send(command);
+            return StatusCode(StatusCodes.Status201Created, new
+            {
+                message = "Dog successfully created"
+            });
+        }
+        [HttpDelete("dog/{name}")]
+        public async Task<IActionResult> DeleteDog(string name)
+        {
+            await _mediator.Send(new DeleteDogCommand(name));
+
+            return Ok(new
+            {
+                message = $"Dog '{name}' successfully deleted"
+            });
         }
     }
 }
