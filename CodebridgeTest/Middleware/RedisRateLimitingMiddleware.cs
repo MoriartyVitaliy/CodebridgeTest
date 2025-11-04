@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using CodebridgeTest.Core.Exceptions;
+using Microsoft.Extensions.Options;
 using StackExchange.Redis;
 
 namespace CodebridgeTest.Middleware
@@ -15,10 +16,11 @@ namespace CodebridgeTest.Middleware
         private readonly int _requestsPerSecond;
         private readonly ILogger<RedisRateLimitingMiddleware> _logger;
 
-        public RedisRateLimitingMiddleware(RequestDelegate next,
-                                           IConnectionMultiplexer redis,
-                                           IOptions<RedisRateLimitOptions> options,
-                                           ILogger<RedisRateLimitingMiddleware> logger)
+        public RedisRateLimitingMiddleware(
+            RequestDelegate next,
+            IConnectionMultiplexer redis,
+            IOptions<RedisRateLimitOptions> options,
+            ILogger<RedisRateLimitingMiddleware> logger)
         {
             _next = next;
             _redis = redis;
@@ -30,8 +32,8 @@ namespace CodebridgeTest.Middleware
         {
             var db = _redis.GetDatabase();
 
-
-            var key = $"ratelimit:{DateTime.UtcNow:yyyyMMddHHmmss}";
+            var clientIp = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+            var key = $"ratelimit:{clientIp}:{DateTime.UtcNow:yyyyMMddHHmmss}";
 
             var count = await db.StringIncrementAsync(key);
 
@@ -40,10 +42,10 @@ namespace CodebridgeTest.Middleware
 
             if (count > _requestsPerSecond)
             {
-                _logger.LogWarning("Rate limit exceeded. Count={Count}, Limit={Limit}", count, _requestsPerSecond);
-                context.Response.StatusCode = StatusCodes.Status429TooManyRequests;
-                await context.Response.WriteAsync("Too many requests. Please try again later.");
-                return;
+                    _logger.LogWarning("Rate limit exceeded for IP {IP}. Count={Count}, Limit={Limit}",
+                    clientIp, count, _requestsPerSecond);
+
+                throw new RateLimitExceededException();
             }
 
             await _next(context);
