@@ -1,6 +1,6 @@
 ﻿using CodebridgeTest.Core.Interfaces;
-using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
+using CodebridgeTest.Core.Exceptions;
 
 namespace CodebridgeTest.Application.Services
 {
