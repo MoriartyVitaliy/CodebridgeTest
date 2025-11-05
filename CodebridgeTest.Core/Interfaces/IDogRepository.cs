@@ -8,6 +8,7 @@ namespace CodebridgeTest.Core.Interfaces
         Task<Dog?> GetByNameAsync(string name);
         Task AddAsync(Dog dog);
         Task DeleteByNameAsync(string name);
+        Task UpdateAsync(Dog dog);
         Task SaveChangesAsync();
     }
 }

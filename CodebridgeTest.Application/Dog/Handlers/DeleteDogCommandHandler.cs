@@ -16,6 +16,7 @@ namespace CodebridgeTest.Application.Dog.Handlers
         public async Task<Unit> Handle(DeleteDogCommand request, CancellationToken cancellationToken)
         {
             await _repository.DeleteByNameAsync(request.Name);
+            await _repository.SaveChangesAsync();
             return Unit.Value;
         }
     }

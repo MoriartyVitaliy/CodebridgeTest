@@ -40,7 +40,18 @@ namespace CodebridgeTest.Persistence.Data.Repositories
                 throw new KeyNotFoundException($"Dog '{name}' not found");
 
             _context.Dogs.Remove(dog);
-            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(Dog dog)
+        {
+            var existingDog = await _context.Dogs.FirstOrDefaultAsync(x => x.Name == dog.Name);
+
+            if (existingDog == null)
+                throw new KeyNotFoundException($"Dog '{dog.Name}' not found");
+
+            existingDog.Color = dog.Color;
+            existingDog.TailLength = dog.TailLength;
+            existingDog.Weight = dog.Weight;
         }
     }
 }
