@@ -73,6 +73,7 @@ namespace CodebridgeTest.Tests
             await repo.SaveChangesAsync();
 
             await repo.DeleteByNameAsync("Buddy");
+            await repo.SaveChangesAsync();
 
             Assert.Null(await ctx.Dogs.FirstOrDefaultAsync(d => d.Name == "Buddy"));
         }
@@ -85,6 +86,95 @@ namespace CodebridgeTest.Tests
 
             await Assert.ThrowsAsync<KeyNotFoundException>(() =>
                 repo.DeleteByNameAsync("UnknownDog"));
+        }
+
+        [Fact]
+        public async Task UpdateAsync_Should_Update_Existing_Dog()
+        {
+            var context = GetDbContext();
+            var repository = new DogRepository(context);
+
+            var dog = new Dog
+            {
+                Name = "Buddy",
+                Color = "Brown",
+                TailLength = 5,
+                Weight = 20
+            };
+
+            await repository.AddAsync(dog);
+            await repository.SaveChangesAsync();
+
+            dog.Color = "Black";
+            dog.TailLength = 7;
+            dog.Weight = 23;
+
+            await repository.UpdateAsync(dog);
+            await repository.SaveChangesAsync();
+
+            var updatedDog = await repository.GetByNameAsync("Buddy");
+
+            Assert.NotNull(updatedDog);
+            Assert.Equal("Black", updatedDog.Color);
+            Assert.Equal(7, updatedDog.TailLength);
+            Assert.Equal(23, updatedDog.Weight);
+        }
+
+        [Fact]
+        public async Task UpdateAsync_Should_Throw_When_Dog_Not_Found()
+        {
+            var context = GetDbContext();
+            var repository = new DogRepository(context);
+
+            var dog = new Dog
+            {
+                Name = "Ghost",
+                Color = "White",
+                TailLength = 3,
+                Weight = 12
+            };
+
+            await Assert.ThrowsAsync<KeyNotFoundException>(async () =>
+            {
+                await repository.UpdateAsync(dog);
+            });
+        }
+
+        [Fact]
+        public async Task GetByNameAsync_Should_Return_Dog_When_Exists()
+        {
+            var context = GetDbContext();
+            var repository = new DogRepository(context);
+
+            var dog = new Dog
+            {
+                Name = "Rex",
+                Color = "Brown",
+                TailLength = 10,
+                Weight = 25
+            };
+
+            await repository.AddAsync(dog);
+            await repository.SaveChangesAsync();
+
+            var result = await repository.GetByNameAsync("Rex");
+
+            Assert.NotNull(result);
+            Assert.Equal("Rex", result!.Name);
+            Assert.Equal("Brown", result.Color);
+            Assert.Equal(10, result.TailLength);
+            Assert.Equal(25, result.Weight);
+        }
+
+        [Fact]
+        public async Task GetByNameAsync_Should_Return_Null_When_NotFound()
+        {
+            var context = GetDbContext();
+            var repository = new DogRepository(context);
+
+            var result = await repository.GetByNameAsync("UnknownDog");
+
+            Assert.Null(result);
         }
     }
 }

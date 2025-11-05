@@ -2,7 +2,7 @@
 using CodebridgeTest.Core.Common.Pagination;
 
 
-namespace CodebridgeTest.Tests
+namespace CodebridgeTest.Tests.Services
 {
     public class PaginationServiceTests
     {

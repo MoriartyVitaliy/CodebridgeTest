@@ -1,4 +1,4 @@
-﻿using CodebridgeTest.Controllers;
+﻿using CodebridgeTest.API.Controllers;
 using CodebridgeTest.Core.Common.Info;
 using Microsoft.AspNetCore.Mvc;
 

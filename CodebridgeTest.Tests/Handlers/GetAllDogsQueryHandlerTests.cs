@@ -1,12 +1,12 @@
 ﻿using CodebridgeTest.Application.Dog.Queries;
-using CodebridgeTest.Controllers;
+using CodebridgeTest.API.Controllers;
 using CodebridgeTest.Core.Common.Pagination;
 using CodebridgeTest.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-namespace CodebridgeTest.Tests
+namespace CodebridgeTest.Tests.Handlers
 {
     public class GetAllDogsQueryHandlerTests
     {

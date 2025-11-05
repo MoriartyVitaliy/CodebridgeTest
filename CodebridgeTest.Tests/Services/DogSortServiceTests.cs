@@ -2,7 +2,7 @@
 using CodebridgeTest.Core.Models;
 using FluentAssertions;
 
-namespace CodebridgeTest.Tests
+namespace CodebridgeTest.Tests.Services
 {
     public class DogSortServiceTests
     {

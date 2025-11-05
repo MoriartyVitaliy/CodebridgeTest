@@ -3,7 +3,7 @@ using CodebridgeTest.Application.Dog.Handlers;
 using CodebridgeTest.Core.Interfaces;
 using Moq;
 
-namespace CodebridgeTest.Tests
+namespace CodebridgeTest.Tests.Handlers
 {
     public class DeleteDogCommandHandlerTests
     {
