@@ -23,7 +23,7 @@
     <ProjectReference Include="..\CodebridgeTest.Application\CodebridgeTest.Application.csproj" />
     <ProjectReference Include="..\CodebridgeTest.Core\CodebridgeTest.Core.csproj" />
     <ProjectReference Include="..\CodebridgeTest.Persistence\CodebridgeTest.Persistence.csproj" />
-    <ProjectReference Include="..\CodebridgeTest\CodebridgeTest.csproj" />
+    <ProjectReference Include="..\CodebridgeTest\CodebridgeTest.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
