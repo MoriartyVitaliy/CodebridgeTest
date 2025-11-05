@@ -4,14 +4,11 @@ using CodebridgeTest.Core.Common.Pagination;
 using CodebridgeTest.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-
-
 using Moq;
-
 
 namespace CodebridgeTest.Tests
 {
-    public class DogControllerTests
+    public class GetAllDogsQueryHandlerTests
     {
 
         [Fact]
