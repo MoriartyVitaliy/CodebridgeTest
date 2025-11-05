@@ -1,6 +1,8 @@
 using CodebridgeTest.Application;
 using CodebridgeTest.API.Middleware;
 using CodebridgeTest.Persistence;
+using CodebridgeTest.Persistence.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodebridgeTest.API
 {
@@ -38,6 +40,12 @@ namespace CodebridgeTest.API
             app.UseGlobalExceptionHandler();
 
             app.MapControllers();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                db.Database.Migrate();
+            }
 
             app.Run();
         }
