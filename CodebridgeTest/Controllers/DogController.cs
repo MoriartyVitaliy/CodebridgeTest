@@ -31,6 +31,7 @@ namespace CodebridgeTest.Controllers
                 message = "Dog successfully created"
             });
         }
+
         [HttpDelete("dog/{name}")]
         public async Task<IActionResult> DeleteDog(string name)
         {
@@ -40,6 +41,26 @@ namespace CodebridgeTest.Controllers
             {
                 message = $"Dog '{name}' successfully deleted"
             });
+        }
+
+        [HttpGet("dog/{name}")]
+        public async Task<IActionResult> GetByName(string name)
+        {
+            var dog = await _mediator.Send(new GetDogByNameQuery(name));
+            if (dog is null)
+                return NotFound();
+
+            return Ok(dog);
+        }
+
+        [HttpPut("dog/{name}")]
+        public async Task<IActionResult> Update(string name, [FromBody] UpdateDogCommand command)
+        {
+            if (!string.Equals(name, command.Name, StringComparison.OrdinalIgnoreCase))
+                return BadRequest("Name in URL and body must match");
+
+            await _mediator.Send(command);
+            return Ok("Updated successfully");
         }
     }
 }
