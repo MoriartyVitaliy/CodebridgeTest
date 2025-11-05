@@ -114,14 +114,16 @@ PUT /dog/Jessy
 ```
 
 ```bash
-curl -X PUT "https://localhost:7173/dog/Jessy" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/json" \
+curl -X 'PUT' \
+  'https://localhost:7173/dog/Jessy' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
   -d '{
-    "color": "white & brown",
-    "tailLength": 8,
-    "weight": 15
-  }'
+  "name": "Jessy",
+  "color": "red",
+  "tailLength": 3,
+  "weight": 3
+}'
 ```
 
 ###  Delete Dog
