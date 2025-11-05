@@ -1,8 +1,8 @@
 using CodebridgeTest.Application;
-using CodebridgeTest.Middleware;
+using CodebridgeTest.API.Middleware;
 using CodebridgeTest.Persistence;
 
-namespace CodebridgeTest
+namespace CodebridgeTest.API
 {
     public class Program
     {

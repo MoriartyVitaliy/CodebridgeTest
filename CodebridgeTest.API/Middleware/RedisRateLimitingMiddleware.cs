@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using StackExchange.Redis;
 
-namespace CodebridgeTest.Middleware
+namespace CodebridgeTest.API.Middleware
 {
     public class RedisRateLimitOptions
     {

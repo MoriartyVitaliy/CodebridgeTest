@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using System.Diagnostics;
 using System.Text;
 
-namespace CodebridgeTest.Middleware
+namespace CodebridgeTest.API.Middleware
 {
     public class RequestLoggingOptions
     {

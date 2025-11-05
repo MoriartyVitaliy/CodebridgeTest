@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text.Json;
 
-namespace CodebridgeTest.Middleware
+namespace CodebridgeTest.API.Middleware
 {
     public class ExceptionMiddleware
     {

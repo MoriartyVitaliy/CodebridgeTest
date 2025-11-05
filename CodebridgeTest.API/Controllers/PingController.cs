@@ -1,7 +1,7 @@
 ﻿using CodebridgeTest.Core.Common.Info;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CodebridgeTest.Controllers
+namespace CodebridgeTest.API.Controllers
 {
     [Route("ping")]
     [ApiController]

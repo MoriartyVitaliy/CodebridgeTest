@@ -4,7 +4,7 @@ using CodebridgeTest.Core.Common.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CodebridgeTest.Controllers
+namespace CodebridgeTest.API.Controllers
 {
     [ApiController]
     public class DogController : ControllerBase
